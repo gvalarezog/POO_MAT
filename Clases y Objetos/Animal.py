@@ -3,16 +3,20 @@
 class Animal:
     """
     Crear objetos de la clase Animal
+    Autor: Guillermo Valarezo
     """
-    def __init__(self, codigo : str, nombre : str = None, numero_patas : int = None, peligro_extinsion : bool = False, ):
+    def __init__(self, codigo : str, nombre : str = None, numero_patas : int = None, peligro_extinsion : bool = False,
+                 *args, **kwargs):
         self._nombre = nombre
         self._numero_patas = numero_patas
         self._peligro_extinsion = peligro_extinsion
         self._codigo = codigo
+        self._adicionales = kwargs
 
     def __str__(self):
         return f'Animal [codigo: {self._codigo}, nombre: {self._nombre}, numero_patas= {self._numero_patas}, ' \
-               f'peligro_extinsion: {self._peligro_extinsion}]'
+               f'peligro_extinsion: {self._peligro_extinsion}, ' \
+               f'adicionales = {self._adicionales}]'
 
     @property
     def nombre(self):
@@ -41,6 +45,14 @@ class Animal:
     @property
     def codigo(self):
         return self._codigo
+
+    @property
+    def adicionales(self):
+        return self._adicionales
+
+    @adicionales.setter
+    def adicionales(self, adicionales):
+        self._adicionales = adicionales
 
     #solo lectura o read only
     # @codigo.setter
@@ -78,9 +90,10 @@ if __name__ == '__main__':
     print(a3)
 
     # print(f'El nombre del animal es: {a3.nombre} tiene {a3.numero_patas} y esta en peligro de extsinsion? {a3.peligro_extinsion}')
-
-    a4 = Animal(codigo=400, nombre='Tortuga', numero_patas='Cuatro', peligro_extinsion='False')
+    paises = ('Ecuador', 'Peru', 'Colombia')
+    adicionales = {'raza':'Galapagos', 'anios':'200', 'alimentacion':'lechuga'}
+    a4 = Animal(codigo=400, nombre='Tortuga', numero_patas='Cuatro', peligro_extinsion='False', args=paises, kwargs=adicionales)
     print(a4)
     print(type(a4.codigo))
-
-
+    print(a4.adicionales['kwargs']['anios'])
+    print(a4.adicionales['args'][2])
