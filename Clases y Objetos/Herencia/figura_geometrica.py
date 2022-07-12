@@ -1,7 +1,8 @@
+from abc import ABC, abstractmethod
+#Abstract Base Class
 
 
-
-class FiguraGeometrica:
+class FiguraGeometrica(ABC):
     """
     Clase padre para heredar a las subclases de cuadrado, rectagunto, ect...
     Autor: Guillermo Valarezo G.
@@ -28,6 +29,14 @@ class FiguraGeometrica:
     @alto.setter
     def alto(self, alto):
         self._alto = alto
+
+    @abstractmethod
+    def calcular_area(self):
+        pass
+
+    @abstractmethod
+    def calcular_perimetro(self):
+        pass
 
 
 if __name__ == '__main__':
